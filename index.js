@@ -5,6 +5,7 @@ import { fifaData } from './fifa.js';
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
+/* commenting out Task1 for ease of terminal use
 //filtering fifaData so that the array conatins only the object representing the final game in 2014
 const fifa2014FinalData = fifaData.filter(function(item){
     return item.Year === 2014 && item.Stage === "Final";
@@ -28,10 +29,11 @@ console.log("Task 1c: ", fifa2014FinalData[0]["Home Team Goals"]);
 
 console.log("Task 1d: ", fifa2014FinalData[0]["Away Team Goals"]);
 
-//(e) Winner of 2014 world cup final */
+//(e) Winner of 2014 world cup final
 
 console.log("Task 1e: ", fifa2014FinalData[0]["Win conditions"]);
 
+*/
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -47,7 +49,7 @@ function getFinals(data) {
    }) 
 }
 
-//console.log(getFinals(fifaData));
+console.log("Task 2: ", getFinals(fifaData));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -116,9 +118,15 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(getFinalsCB) {
+    let average = getFinalsCB.reduce(function(total, goals){
+    return (total = total + goals["Home Team Goals"] + goals["Away Team Goals"]);
+   }, 0);
+    return (Math.round(average/getFinalsCB.length * 100) / 100).toString();
 }
+
+
+console.log("Task 6: ", getAverageGoals(getFinals(fifaData)));
 
 
 
